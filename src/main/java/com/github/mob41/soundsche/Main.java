@@ -5,6 +5,7 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import com.github.mob41.soundsche.ui.UIFrame;
 import com.sun.jna.NativeLibrary;
 
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
@@ -38,6 +39,16 @@ public class Main {
 		} else {
 			NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), vlcNearbyFolder.getAbsolutePath());
 		}
+		
+		String loadFilePath = null;
+		if (args.length > 0){
+			loadFilePath = args[0];
+		}
+		
+		boolean autoPlay = args.length == 2 && args[1].equals("-autoplay");
+		
+		UIFrame frame = new UIFrame(autoPlay, loadFilePath);
+		frame.setVisible(true);
 	}
 
 }
